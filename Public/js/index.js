@@ -198,4 +198,8 @@ new Array(...document.getElementsByClassName("add"))
         //通过上一个兄弟节点获取num;
         var num = Number.parseInt(this.previousElementSibling.value);
         this.previousElementSibling.value = num + 1;
+        // this.parentNode.parentNode.parentNode.childNodes
+        console.log();
+        var total = Number.parseFloat(this.parentElement.parentElement.parentElement.children.item(3).lastElementChild.innerHTML.substring(1));
+        this.parentElement.parentElement.parentElement.children.item(4).firstElementChild.innerHTML = "￥" + total * (num+1);
     });
