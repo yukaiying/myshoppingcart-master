@@ -183,3 +183,19 @@ var showHtml = storeList.map(val =>
 
 var showStore = document.getElementById("show-store");
 showStore.innerHTML = showHtml;
+
+// document.getElementsByClassName("add").onclick = function () {
+//     alert(1);
+// };
+/*var addClass = document.getElementsByClassName("add");
+for(var add of addClass){
+    add.onclick = function () {
+        alert(1);
+    }
+}*/
+new Array(...document.getElementsByClassName("add"))
+    .forEach(val => val.onclick = function () {
+        //通过上一个兄弟节点获取num;
+        var num = Number.parseInt(this.previousElementSibling.value);
+        this.previousElementSibling.value = num + 1;
+    });
