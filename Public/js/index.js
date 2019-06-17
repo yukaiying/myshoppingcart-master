@@ -25,13 +25,13 @@
 const storeList = [
     new Store("eastpak旗舰店",
         [
-            new Product("EASTPAK2016依斯柏新品背包 迷你时尚儿童双肩包 潮流小学生书包","../Public/images/eastpak2.jpg","EK043363","灰色",1,269.00,269.00),
-            new Product("EASTPAK2016依斯柏新品背包 迷你时尚儿童双肩包 潮流小学生书包","../Public/images/eastpak2.jpg","EK043363","灰色",1,269.00,269.00),
+            new Product("EASTPAK2016依斯柏新品背包 迷你时尚儿童双肩包 潮流小学生书包","../Public/images/eastpak2.jpg","EK043363","灰色",1,268.00,268.00),
+            new Product("EASTPAK2016依斯柏新品背包 迷你时尚儿童双肩包 潮流小学生书包","../Public/images/eastpak2.jpg","EK043363","灰色",1,267.00,267.00),
             new Product("EASTPAK2016依斯柏新品背包 迷你时尚儿童双肩包 潮流小学生书包","../Public/images/eastpak2.jpg","EK043363","灰色",1,269.00,269.00)]),
     new Store("迪曼斯家纺直销店",
         [
-            new Product("EASTPAK2016依斯柏新品背包 迷你时尚儿童双肩包 潮流小学生书包","../Public/images/eastpak2.jpg","EK043363","灰色",1,269.00,269.00),
-            new Product("EASTPAK2016依斯柏新品背包 迷你时尚儿童双肩包 潮流小学生书包","../Public/images/eastpak2.jpg","EK043363","灰色",1,269.00,269.00)])
+            new Product("EASTPAK2016依斯柏新品背包 迷你时尚儿童双肩包 潮流小学生书包","../Public/images/eastpak2.jpg","EK043363","灰色",1,264.00,264.00),
+            new Product("EASTPAK2016依斯柏新品背包 迷你时尚儿童双肩包 潮流小学生书包","../Public/images/eastpak2.jpg","EK043363","灰色",1,265.00,265.00)])
     ];
 
 function Store(name,productList) {
@@ -199,7 +199,6 @@ new Array(...document.getElementsByClassName("add"))
         var num = Number.parseInt(this.previousElementSibling.value);
         this.previousElementSibling.value = num + 1;
         // this.parentNode.parentNode.parentNode.childNodes
-        console.log();
         var total = Number.parseFloat(this.parentElement.parentElement.parentElement.children.item(3).lastElementChild.innerHTML.substring(1));
         this.parentElement.parentElement.parentElement.children.item(4).firstElementChild.innerHTML = "￥" + total * (num+1);
     });
@@ -219,3 +218,24 @@ Array.of(...document.getElementsByClassName("btn-del")).forEach(val =>
         this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode);
     })
 ;
+Array.of(...document.getElementsByClassName("goods-check")).forEach(val => {
+    val.onchange = function () {
+        let totalNum = document.getElementById("total-num");
+        let totalPrice = document.getElementById("total-price");
+        let num = Number.parseInt(this.parentElement.parentElement.children.item(2).firstElementChild.children.item(1).value);
+        let price = Number.parseFloat((this.parentElement.parentElement.children.item(4).firstElementChild.innerHTML).substring(1));
+        let selfTotalNum = Number.parseInt(totalNum.innerText);
+        let selfTotalPrice = Number.parseFloat(totalPrice.innerText.substring(1));
+        totalNum.innerHTML = this.checked ? (num + selfTotalNum) + "" : (selfTotalNum - num) + "";
+        totalPrice.innerHTML = this.checked ? "￥" + (price + selfTotalPrice) : "￥" + (selfTotalPrice - price);
+        // if(this.checked){
+        //     //选中
+        //     totalNum.innerHTML = (num + selfTotalNum)+"";
+        //     totalPrice.innerHTML = "￥" + (price + selfTotalPrice);
+        // }else{
+        //     //不选中
+        //     totalNum.innerHTML = (num + selfTotalNum)+"";
+        //     totalPrice.innerHTML = "￥" + (selfTotalPrice - price);
+        // }
+    }
+});

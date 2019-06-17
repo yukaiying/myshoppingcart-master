@@ -15,6 +15,16 @@
         this.name = name;
         this.color = color;
     }
+    //[dog1,dog2,dog3]
+    //for,....循环
+    var arr2 = [1,2,3];
+    // var [a,b,c] = [1,2,3];
+    var {a,b } = {a:"kanya",b : 20};
+    console.log(arr2);//[1,2,3]
+    console.log(...arr2);//1,2,3
+    console.log(a);
+    console.log(b);
+    // console.log(c);
     // arr.forEach()
      // arr.forEach((a,i,r) => console.log(a+";"+i+";"+r));
     // console.log(arr.join(""));
@@ -26,8 +36,8 @@
     // for(var dog of arr){
     //     console.log(dog);
     // }
-    console.log("数组展示：");
-    console.log(arr);
+    // console.log("数组展示：");
+    // console.log(arr);
 
     /*
     function name() {
@@ -46,6 +56,22 @@
 
     }
     (name1,name2) => {}*/
+
+
+    function f(obj) {
+        var name = obj.name;
+        var age = obj.age ;
+        console.log(name + age);
+    }
+    f(obj)
+
+    function f1(name,age) {
+
+    }
+    f2(obj)
+    var {name,age}  = obj;
+
+    f2(...3)
 </script>
 </body>
 </html>
