@@ -199,8 +199,19 @@ new Array(...document.getElementsByClassName("add"))
         var num = Number.parseInt(this.previousElementSibling.value);
         this.previousElementSibling.value = num + 1;
         // this.parentNode.parentNode.parentNode.childNodes
-        var total = Number.parseFloat(this.parentElement.parentElement.parentElement.children.item(3).lastElementChild.innerHTML.substring(1));
-        this.parentElement.parentElement.parentElement.children.item(4).firstElementChild.innerHTML = "￥" + total * (num+1);
+        var price = Number.parseFloat(this.parentElement.parentElement.parentElement.children.item(3).lastElementChild.innerHTML.substring(1));
+        this.parentElement.parentElement.parentElement.children.item(4).firstElementChild.innerHTML = "￥" + price * (num+1);
+        //获取对应的复选框
+        var checkedBoxIsChecked = this.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.checked;
+        if(checkedBoxIsChecked){
+            //把变更加入到总数当中
+            let totalNum = document.getElementById("total-num");
+            let totalPrice = document.getElementById("total-price");
+            let selfTotalNum = Number.parseInt(totalNum.innerText);
+            let selfTotalPrice = Number.parseFloat(totalPrice.innerText.substring(1));
+            totalNum.innerText = selfTotalNum + 1 + "";
+            totalPrice.innerText = "￥" + (selfTotalPrice + price);
+        }
     });
 
 new Array(...document.getElementsByClassName("reduce reSty"))
@@ -209,9 +220,19 @@ new Array(...document.getElementsByClassName("reduce reSty"))
         var num = Number.parseInt(this.nextElementSibling.value);
         this.nextElementSibling.value = num - 1;
         // this.parentNode.parentNode.parentNode.childNodes
-        console.log();
-        var total = Number.parseFloat(this.parentElement.parentElement.parentElement.children.item(3).lastElementChild.innerHTML.substring(1));
-        this.parentElement.parentElement.parentElement.children.item(4).firstElementChild.innerHTML = "￥" + total * (num-1);
+        var price = Number.parseFloat(this.parentElement.parentElement.parentElement.children.item(3).lastElementChild.innerHTML.substring(1));
+        this.parentElement.parentElement.parentElement.children.item(4).firstElementChild.innerHTML = "￥" + price * (num-1);
+        //获取对应的复选框
+        var checkedBoxIsChecked = this.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.checked;
+        if(checkedBoxIsChecked){
+            //把变更加入到总数当中
+            let totalNum = document.getElementById("total-num");
+            let totalPrice = document.getElementById("total-price");
+            let selfTotalNum = Number.parseInt(totalNum.innerText);
+            let selfTotalPrice = Number.parseFloat(totalPrice.innerText.substring(1));
+            totalNum.innerText = selfTotalNum - 1 + "";
+            totalPrice.innerText = "￥" + (selfTotalPrice - price);
+        }
     });
 Array.of(...document.getElementsByClassName("btn-del")).forEach(val =>
     val.onclick = function () {
